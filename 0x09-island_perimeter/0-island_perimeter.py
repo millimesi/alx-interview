@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 def island_perimeter(grid):
-    ''' Calculates the primater of the land perimeter in the grid
+    '''
+    Calculates the primater of the land perimeter in the grid
 
     Args:
         grid(2D list): 2d array
@@ -12,6 +13,8 @@ def island_perimeter(grid):
     rows = len(grid)
     cols = len(grid[0])
 
+    if not grid or not grid[0]:
+        return 0
     def is_outside_or_water(i, j):
         """ Checks if the nebouring area is land or water or outside
         Args:
