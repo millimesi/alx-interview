@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ is_land parameter """
 
+
 def island_perimeter(grid):
     '''
     Calculates the primater of the land perimeter in the grid
