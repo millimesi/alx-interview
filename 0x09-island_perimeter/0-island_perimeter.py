@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" is_land parameter """
 
 def island_perimeter(grid):
     '''
@@ -15,6 +16,7 @@ def island_perimeter(grid):
 
     if not grid or not grid[0]:
         return 0
+
     def is_outside_or_water(i, j):
         """ Checks if the nebouring area is land or water or outside
         Args:
