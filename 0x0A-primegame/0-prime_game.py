@@ -1,9 +1,8 @@
 #!/usr/bin/python3
 """ Prime numer game"""
-from typing import List, Optional
 
 
-def SieveOfEratosthenes(n: int) -> List[int]:
+def SieveOfEratosthenes(n):
     '''
     list all prime number less than or equal to n
     Args:
@@ -20,7 +19,7 @@ def SieveOfEratosthenes(n: int) -> List[int]:
     return [p for p in range(2, n + 1) if prime[p]]
 
 
-def isWinner(x: int, nums: List[int]) -> Optional[str]:
+def isWinner(x, nums):
     """
     Determines the winner prime game
 
