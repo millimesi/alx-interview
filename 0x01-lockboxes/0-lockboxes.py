@@ -11,13 +11,15 @@ def canUnlockAll(boxes):
         bool: true if all can be opened or false
     '''
     n = len(boxes)
-    opended = [False] * n  # assume all boxes are opended
-    opended[0] = True  # first box is opened
-    keys = boxes[0]  # the first key
+    opened = [False] * n
+    opened[0] = True
+    keys = [0]
 
-    for key in keys:
-        if not opended[key]:
-            opended[key] = True
-            keys.extend(boxes[key])
+    while keys:
+        box = keys.pop()
+        for each in boxes[box]:
+            if each >= 0 and each < n and not opened[each]:
+                opened[each] = True
+                keys.append(each)
 
-    return all(opended)
+    return all(opened)
