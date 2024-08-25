@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """
-Log parsing
+Log parsing script that reads from stdin and computes metrics.
 """
 import sys
 
-# Initialize
-all_size = 0
-status_amount = {
+# Initialize variables to store total file size and counts for each status code
+total_file_size = 0
+status_code_counts = {
     "200": 0,
     "301": 0,
     "400": 0,
@@ -22,10 +22,10 @@ def print_metrics():
     """
     Prints the computed metrics.
     """
-    print(f"File size: {all_size}")
-    for c in sorted(status_amount.keys()):
-        if status_amount[c] > 0:
-            print(f"{c}: {status_amount[c]}")
+    print(f"File size: {total_file_size}")
+    for code in sorted(status_code_counts.keys()):
+        if status_code_counts[code] > 0:
+            print(f"{code}: {status_code_counts[code]}")
 
 
 line_count = 0
@@ -41,18 +41,18 @@ try:
         ip = parts[0]
         date = parts[3] + " " + parts[4]
         request = parts[5] + " " + parts[6] + " " + parts[7]
-        status_c = parts[8]
+        status_code = parts[8]
 
         # Validate file_size presence and correctness
         try:
             file_size = int(parts[9])
-            all_size += file_size
+            total_file_size += file_size
         except (IndexError, ValueError):
             continue
 
-        # Update status c counts
-        if status_c in status_amount:
-            status_amount[status_c] += 1
+        # Update status code counts
+        if status_code in status_code_counts:
+            status_code_counts[status_code] += 1
 
         line_count += 1
 
