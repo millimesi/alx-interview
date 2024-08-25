@@ -2,35 +2,43 @@
 
 const request = require('request');
 
-const filmId = process.argv[2];
+// Get the movie ID from the first positional argument
+const movieId = process.argv[2];
 
-if (!filmId) {
-  console.log('Usage: ./0-starwars_char.js <filmId>');
+if (!movieId) {
+  console.log('Usage: ./0-starwars_characters.js <movieId>');
   process.exit(1);
 }
 
-const movieUrl = `https://swapi-api.hbtn.io/api/films/${filmId}/`;
+// Define the API endpoint for the film
+const filmUrl = `https://swapi-api.hbtn.io/api/films/${movieId}/`;
 
-request(movieUrl, (error, response, body) => {
+// Make a request to the film endpoint
+request(filmUrl, (error, response, body) => {
   if (error) {
     console.error('Error:', error);
     return;
   }
 
-  const data = JSON.parse(body);
+  // Parse the response body
+  const filmData = JSON.parse(body);
 
-  const char = data.char;
+  // Get the characters list
+  const characters = filmData.characters;
 
-  char.forEach((characterUrl) => {
+  // Loop through each character URL and make a request to get the name
+  characters.forEach((characterUrl) => {
     request(characterUrl, (charError, charResponse, charBody) => {
       if (charError) {
         console.error('Error:', charError);
         return;
       }
 
-      const charinfo = JSON.parse(charBody);
+      // Parse the character response body
+      const characterData = JSON.parse(charBody);
 
-      console.log(charinfo.name);
+      // Print the character name
+      console.log(characterData.name);
     });
   });
 });
