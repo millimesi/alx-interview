@@ -7,9 +7,9 @@ def print_my(d_sc, t_file_size):
     """
     printing method
     Args:
-        d_sc: dict of status codes
-        t_file_size: total of the file
-    Returns:
+        d_sc: status code
+        t_file_size: file size
+    return:
         Nothing
     """
 
